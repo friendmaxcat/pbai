@@ -1,7 +1,8 @@
-FROM node:20-alpine
-WORKDIR /app
-COPY package*.json ./
-RUN npm install
-COPY . .
-EXPOSE 8080
-CMD ["npm", "start"]
+# Используем официальный образ PHP со встроенным веб-сервером Apache
+FROM php:8.2-apache
+
+# Копируем ваш index.php внутрь контейнера в папку веб-сервера
+COPY index.php /var/www/html/
+
+# Открываем 80-й порт (стандартный для HTTP)
+EXPOSE 80
